@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Loraine | STEM Portfolio</title>
+    <!-- Google Fonts: clean modern sans-serif -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #000000;
+            font-family: 'Inter', sans-serif;
+            color: #F0F0F0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* custom scrollbar - red accent */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #e03a3a;
+            border-radius: 8px;
+        }
+
+        /* container for centered content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* section spacing */
+        section {
+            padding: 5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* headings */
+        h1, h2, h3 {
+            font-weight: 500;
+            letter-spacing: -0.02em;
+        }
+        h1 {
+            font-size: 3.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: #FFFFFF;
+        }
+        h2 {
+            font-size: 2.2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+            color: #FFFFFF;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 48px;
+            height: 3px;
+            background: #e03a3a;
+            border-radius: 4px;
+        }
+        .section-sub {
+            color: #b0b0b0;
+            margin-top: -1.2rem;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        /* buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background: transparent;
+            border: 1.5px solid #e03a3a;
+            padding: 0.75rem 1.8rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            border-radius: 40px;
+            transition: all 0.25s ease;
+            cursor: pointer;
+            text-decoration: none;
+            letter-spacing: 0.2px;
+        }
+        .btn i {
+            color: #e03a3a;
+            transition: 0.2s;
+        }
+        .btn:hover {
+            background: #e03a3a;
+            border-color: #e03a3a;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(224,58,58,0.25);
+        }
+        .btn:hover i {
+            color: white;
+        }
+        .btn-outline-light {
+            border-color: #5a5a5a;
+            color: #eaeaea;
+        }
+        .btn-outline-light:hover {
+            background: #2c2c2c;
+            border-color: #e03a3a;
+        }
+
+        /* navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.2s;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .logo {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: white;
+            text-decoration: none;
+        }
+        .logo span {
+            color: #e03a3a;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #dddddd;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: 0.2s;
+            position: relative;
+        }
+        .nav-links a:hover, .nav-links a.active {
+            color: #e03a3a;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #e03a3a;
+            transition: width 0.2s;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* hero section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 5rem;
+        }
+        .hero-content {
+            max-width: 750px;
+        }
+        .hero-badge {
+            display: inline-block;
+            background: rgba(224,58,58,0.12);
+            padding: 0.3rem 0.9rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #e03a3a;
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.3px;
+        }
+        .hero-desc {
+            font-size: 1.2rem;
+            color: #c0c0c0;
+            margin: 1.5rem 0 2rem;
+            max-width: 90%;
+            line-height: 1.6;
+        }
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        /* about section with image - modern centered layout */
+        .about-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .about-content {
+            flex: 1.5;
+            min-width: 280px;
+        }
+        .about-text {
+            font-size: 1.05rem;
+            color: #d0d0d0;
+            line-height: 1.7;
+        }
+        .about-text p {
+            margin-bottom: 1rem;
+        }
+        .image-frame {
+            flex: 1;
+            min-width: 260px;
+            display: flex;
+            justify-content: center;
+        }
+        .profile-card {
+            background: linear-gradient(145deg, #0c0c0c, #080808);
+            border-radius: 32px;
+            padding: 1rem;
+            border: 1px solid rgba(224,58,58,0.25);
+            transition: all 0.4s ease;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.5);
+            max-width: 320px;
+            width: 100%;
+        }
+        .profile-card:hover {
+            transform: translateY(-8px);
+            border-color: #e03a3a;
+            box-shadow: 0 25px 40px -12px rgba(224,58,58,0.25);
+        }
+        .profile-img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 28px;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+        .profile-card:hover .profile-img {
+            transform: scale(1.02);
+        }
+        .img-caption {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            border-top: 1px solid rgba(224,58,58,0.2);
+            padding-top: 0.8rem;
+        }
+        .img-caption i {
+            color: #e03a3a;
+            margin-right: 6px;
+        }
+
+        /* skill badges */
+        .skill-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 2rem 0 1.5rem 0;
+        }
+        .skill-badge {
+            background: #1a1a1a;
+            padding: 0.6rem 1.3rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #e6e6e6;
+            border-left: 2px solid #e03a3a;
+            transition: all 0.2s ease;
+        }
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            background: #2a2a2a;
+            border-left-color: #ff5a5a;
+        }
+
+        /* training list */
+        .exp-list {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+        .exp-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            font-size: 1rem;
+            color: #cfcfcf;
+        }
+        .exp-list li i {
+            color: #e03a3a;
+            width: 24px;
+            font-size: 1.1rem;
+        }
+        .training-highlight {
+            background: #0c0c0c;
+            padding: 1.8rem;
+            border-radius: 28px;
+            margin-top: 2rem;
+            border: 1px solid rgba(224,58,58,0.2);
+            transition: all 0.3s;
+        }
+        .training-highlight:hover {
+            border-color: rgba(224,58,58,0.5);
+        }
+
+        /* contact section */
+        .contact-wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.5rem;
+            margin-top: 1rem;
+        }
+        .contact-info {
+            flex: 1;
+            background: #0a0a0a;
+            border-radius: 32px;
+            padding: 2rem;
+            border: 1px solid #202020;
+            transition: all 0.3s ease;
+        }
+        .contact-info:hover {
+            border-color: #e03a3a;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            margin-bottom: 1.8rem;
+        }
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 60px;
+            font-size: 1.4rem;
+            color: #e03a3a;
+            transition: 0.2s;
+        }
+        .contact-detail h4 {
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: #b0b0b0;
+            margin-bottom: 0.2rem;
+        }
+        .contact-detail a, .contact-detail span {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+        }
+        .contact-detail a:hover {
+            color: #e03a3a;
+        }
+
+        /* footer */
+        .footer {
+            text-align: center;
+            padding: 2rem 0;
+            color: #6c6c6c;
+            font-size: 0.85rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* animations */
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .hero-content, .about-wrapper, .skill-cards, .training-highlight, .contact-wrapper {
+            opacity: 0;
+            animation: fadeUp 0.7s ease forwards;
+        }
+        .hero-content { animation-delay: 0.1s; }
+        .about-wrapper { animation-delay: 0.2s; }
+        .skill-cards { animation-delay: 0.3s; }
+        .training-highlight { animation-delay: 0.4s; }
+        .contact-wrapper { animation-delay: 0.5s; }
+        
+        .skill-badge, .contact-item {
+            opacity: 0;
+            animation: fadeUp 0.4s ease forwards;
+            animation-delay: calc(0.05s * var(--i, 1));
+        }
+
+        /* responsive */
+        @media (max-width: 900px) {
+            .about-wrapper {
+                flex-direction: column-reverse;
+                text-align: center;
+                gap: 2rem;
+            }
+            .about-content {
+                text-align: left;
+            }
+            .hero-desc {
+                max-width: 100%;
+            }
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1.5rem;
+            }
+            h1 {
+                font-size: 2.6rem;
+            }
+            h2 {
+                font-size: 1.9rem;
+            }
+            .nav-links {
+                gap: 1.2rem;
+            }
+            .contact-wrapper {
+                flex-direction: column;
+            }
+        }
+        @media (max-width: 550px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .navbar {
+                padding: 0.8rem 0;
+            }
+            .hero {
+                padding-top: 7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        <a href="#" class="logo">Loraine<span>.</span></a>
+        <ul class="nav-links">
+            <li><a href="#home" class="nav-link active">Home</a></li>
+            <li><a href="#about" class="nav-link">About</a></li>
+            <li><a href="#skills" class="nav-link">Skills</a></li>
+            <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <div class="hero-badge">✦ STEM Student & ATP Trainee</div>
+            <h1>Loraine Bacuyag</h1>
+            <p class="hero-desc">
+                Grade 11 STEM student at Licerio Antiporda Sr. National Highschool - Main, and dedicated trainee at Lyceum of Aparri under the ATP program. Passionate about technology, design, and building meaningful digital experiences.
+            </p>
+            <div class="hero-actions">
+                <a href="#about" class="btn"><i class="fas fa-user"></i> About Me</a>
+                <a href="#contact" class="btn btn-outline-light"><i class="fas fa-envelope"></i> Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Image Insert Area -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-wrapper">
+                <!-- Left side: Text content -->
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello! I'm <strong>Loraine</strong>, a Grade 11 student under the Science, Technology, Engineering, and Mathematics (STEM) strand at <strong>Licerio Antiporda Sr. National Highschool - Main</strong>. I am also a passionate trainee at the <strong>Lyceum of Aparri</strong> under the ATP (Auxiliary Technology Computer Training Program).</p>
+                        <p>Through this program, I have developed essential computer skills and gained hands-on experience in various digital tools and technologies. I believe in the power of creativity and logic coming together to build elegant solutions. My goal is to continuously grow as a tech enthusiast and contribute to meaningful projects.</p>
+                    </div>
+                </div>
+
+                <!-- Right side: IMAGE INSERT AREA -->
+                <div class="image-frame">
+                    <div class="profile-card">
+                        <!-- ========================================================= -->
+                        <!-- 🖼️ INSERT YOUR IMAGE HERE:                               -->
+                        <!-- Replace the src value with your own image file path or URL -->
+                        <!-- Example: "images/loraine-photo.jpg" or any online link    -->
+                        <img class="profile-img" 
+                             src="me.png" 
+                             alt="Loraine Bacuyag - STEM Student"
+                             id="profilePhoto">
+                        <!-- ========================================================= -->
+                        <div class="img-caption">
+                            <i class="fas fa-camera-retro"></i> Loraine Bacuyag
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ATP Training Experience Block -->
+            <div class="training-highlight">
+                <i class="fas fa-laptop-code" style="font-size: 1.8rem; color: #e03a3a; margin-bottom: 0.7rem; display: inline-block;"></i>
+                <h3 style="margin-bottom: 0.5rem;">ATP Training Experience</h3>
+                <p style="color:#bcbcbc">Through the Auxiliary Technology Computer Training Program at Lyceum of Aparri, I have built a strong foundation in digital tools, productivity software, and front-end web development. This program equipped me with real-world skills that I actively apply in creating online portfolios and projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section: What I've learned during training -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Toolkit</h2>
+            <div class="section-sub">Hands-on skills developed during training</div>
+            
+            <div class="skill-cards">
+                <div class="skill-badge" style="--i:1;">📊 Microsoft PowerPoint</div>
+                <div class="skill-badge" style="--i:2;">📈 Spreadsheet (Excel)</div>
+                <div class="skill-badge" style="--i:3;">📄 Microsoft Word</div>
+                <div class="skill-badge" style="--i:4;">🌐 HTML5 & CSS3</div>
+                <div class="skill-badge" style="--i:5;">⚡ Simple JavaScript</div>
+                <div class="skill-badge" style="--i:6;">🎨 Portfolio Design & Dev</div>
+                <div class="skill-badge" style="--i:7;">🖥️ Digital Literacy</div>
+                <div class="skill-badge" style="--i:8;">📁 Productivity Suites</div>
+            </div>
+
+            <div class="exp-list">
+                <h3 style="font-weight: 500; margin-bottom: 1rem; color:#f0f0f0;">What I've mastered during training:</h3>
+                <li><i class="fas fa-check-circle"></i> <span>Use Microsoft PowerPoint for academic & creative presentations</span></li>
+                <li><i class="fas fa-check-circle"></i> <span>Advanced spreadsheet functions & data analysis</span></li>
+                <li><i class="fas fa-check-circle"></i> <span>Microsoft Word document formatting & professional layouts</span></li>
+                <li><i class="fas fa-check-circle"></i> <span>Simple HTML & CSS coding: structure, styling, responsive design</span></li>
+                <li><i class="fas fa-check-circle"></i> <span>Build and design a personal online portfolio websites from scratch</span></li>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <div class="section-sub">Reach out for collaboration or opportunities</div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-detail">
+                            <h4>Email</h4>
+                            <a href="mailto:lorainebacuyag9gmail.com">lorainebacuyag9@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-detail">
+                            <h4>Contact Number</h4>
+                            <span>0970 103 7529</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-detail">
+                            <h4>Location</h4>
+                            <span>Aparri / Licerio Antiporda, Philippines</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="contact-detail">
+                            <h4>Education</h4>
+                            <span>STEM - Grade 11 | Licerio Antiporda Sr. NHS - Main</span>
+                            <span style="font-size:0.85rem; display:block;">ATP Trainee @ Lyceum of Aparri</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-info" style="background: #050505;">
+                    <h3 style="margin-bottom: 1rem; font-weight: 500;"><i class="fas fa-paper-plane" style="color:#e03a3a; margin-right: 0.5rem;"></i> Get in touch</h3>
+                    <p style="color:#adadad; margin-bottom: 1.5rem;">I'm open to new opportunities, collaborations, or just a chat about tech and design. Feel free to reach out!</p>
+                    <a href="mailto:lorainebacuyag9gmail.com" class="btn" style="background: #e03a3a10;"><i class="fas fa-envelope"></i> Send a message</a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <p>© 2025 Loraine Bacuyag — STEM Student | ATP Trainee. Designed with <i class="fas fa-heart" style="color:#e03a3a; font-size: 0.7rem;"></i> minimalism.</p>
+    </div>
+</footer>
+
+<script>
+    // Smooth scrolling + active nav highlight
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('section');
+    
+    function updateActiveLink() {
+        let current = '';
+        const scrollPos = window.scrollY + 150;
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href').substring(1);
+            if (href === current) {
+                link.classList.add('active');
+            }
+        });
+    }
+    
+    window.addEventListener('scroll', updateActiveLink);
+    window.addEventListener('load', updateActiveLink);
+    
+    // smooth scroll for nav links
+    document.querySelectorAll('.nav-link').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        });
+    });
+    
+    // hero buttons
+    const aboutBtn = document.querySelector('.btn[href="#about"]');
+    const contactBtn = document.querySelector('.btn[href="#contact"]');
+    if(aboutBtn) {
+        aboutBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    if(contactBtn) {
+        contactBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    
+    // dynamic navbar background
+    const navbar = document.querySelector('.navbar');
+    window.addEventListener('scroll', () => {
+        if(window.scrollY > 50) {
+            navbar.style.background = 'rgba(0,0,0,0.92)';
+            navbar.style.backdropFilter = 'blur(14px)';
+        } else {
+            navbar.style.background = 'rgba(0,0,0,0.85)';
+            navbar.style.backdropFilter = 'blur(12px)';
+        }
+    });
+
+    // console instruction for image replacement
+    console.log("📸 IMAGE TUTORIAL: Find the <img> with class 'profile-img' inside .profile-card. Replace the src attribute with your own image URL (local path or online link). Example: src='images/your-photo.jpg'");
+</script>
+</body>
+</html>
